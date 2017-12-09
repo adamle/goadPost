@@ -47,7 +47,7 @@ class CreateGoalVC: UIViewController, UITextViewDelegate {
             // Create constant finishGoalVC to initialize data received in CreateGoalVC
             guard let finishGoalVC = storyboard?.instantiateViewController(withIdentifier: "FinishGoalVC") as? FinishGoalVC else { return}
             finishGoalVC.initData(description: goalTxtView.text!, type: goalType)
-            presentDetail(finishGoalVC)
+            presentingViewController?.presentSecondaryDetail(finishGoalVC)
         }
     }
     
