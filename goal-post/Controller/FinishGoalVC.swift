@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class FinishGoalVC: UIViewController, UITextFieldDelegate {
 
@@ -16,6 +17,7 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
     var goalDescription: String!
     var goalType: GoalType!
     
+    // Public func of initData from FinishGoalVC, to be used in CreateGoalVC
     func initData(description: String, type: GoalType) {
         self.goalDescription = description
         self.goalType = type
@@ -32,7 +34,50 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func createGoalBtnPressed(_ sender: Any) {
-        // Pass data into CoreData
+        if pointsTxtField.text != "" && Int32(pointsTxtField.text!) != nil {
+            // Pass data into CoreData
+            self.save { (complete) in
+                if complete {
+                    dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
+    func save(completion: (_ finished: Bool) -> ()) {
+        // Managed Object Context
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return}
+        // Tell the managedContext to manage such as save data to the goal of class Goal coreData
+        let goal = Goal(context: managedContext)
+        
+        goal.goalDescription = goalDescription
+        goal.goalType = goalType.rawValue
+        goal.goalCompletionValue = Int32(pointsTxtField.text!)!
+        goal.goalProgress = Int32(0)
+        
+        // Try this, but if it doesn't work, catch the error
+        do {
+            try managedContext.save()
+            print("Successfully save data")
+            completion(true)
+        } catch {
+            debugPrint("Could not save: \(error.localizedDescription)")
+            completion(false)
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
