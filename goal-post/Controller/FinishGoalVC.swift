@@ -44,6 +44,7 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Save data to CoreData so that GoalVC can fetch
     func save(completion: (_ finished: Bool) -> ()) {
         // Managed Object Context
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return}
