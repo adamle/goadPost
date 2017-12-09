@@ -19,6 +19,7 @@
 		DEFB38021FDC389D004F61D3 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB38011FDC389D004F61D3 /* UIViewControllerExt.swift */; };
 		DEFB38041FDC403A004F61D3 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB38031FDC403A004F61D3 /* UIViewExt.swift */; };
 		DEFB38061FDC448D004F61D3 /* UIButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB38051FDC448D004F61D3 /* UIButtonExt.swift */; };
+		DEFB38081FDC4C3C004F61D3 /* FinishGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB38071FDC4C3C004F61D3 /* FinishGoalVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		DEFB38011FDC389D004F61D3 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		DEFB38031FDC403A004F61D3 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		DEFB38051FDC448D004F61D3 /* UIButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExt.swift; sourceTree = "<group>"; };
+		DEFB38071FDC4C3C004F61D3 /* FinishGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishGoalVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				DEFB37F91FDBED3E004F61D3 /* GoalVC.swift */,
 				DEFB37FF1FDC3759004F61D3 /* CreateGoalVC.swift */,
+				DEFB38071FDC4C3C004F61D3 /* FinishGoalVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				DEFB37FA1FDBED3E004F61D3 /* GoalVC.swift in Sources */,
 				DEFB38021FDC389D004F61D3 /* UIViewControllerExt.swift in Sources */,
 				DEFB38061FDC448D004F61D3 /* UIButtonExt.swift in Sources */,
+				DEFB38081FDC4C3C004F61D3 /* FinishGoalVC.swift in Sources */,
 				DEFB37E91FDBECBA004F61D3 /* goal_post.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
