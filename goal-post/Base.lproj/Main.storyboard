@@ -335,6 +335,7 @@
                     <connections>
                         <outlet property="goalTxtView" destination="ELJ-eg-P9A" id="aeo-Ky-hRI"/>
                         <outlet property="longTermBtn" destination="ARV-4q-IwV" id="WMT-BJ-YSS"/>
+                        <outlet property="nextBtn" destination="W77-By-udm" id="0NO-BI-CVQ"/>
                         <outlet property="shortTermBtn" destination="TM1-gL-vRq" id="ukT-Cb-WUU"/>
                     </connections>
                 </viewController>
