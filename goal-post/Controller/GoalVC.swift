@@ -25,15 +25,7 @@ class GoalVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.fetch { (complete) in
-            if complete {
-                if goals.count > 0 {
-                    tableView.isHidden = false
-                } else {
-                    tableView.isHidden = true
-                }
-            }
-        }
+        fetchCoreDataObject()
         tableView.reloadData()
     }
     
@@ -60,9 +52,44 @@ extension GoalVC: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(goal: goal)
         return cell
     }
+    
+    // Edit table view
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.none
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        // Delete action
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
+            self.removeGoal(atIndexPath: indexPath)
+            self.fetchCoreDataObject()
+            // Call tableView delete the row with built-in cool animation
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        deleteAction.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        return [deleteAction]
+    }
 }
 
 extension GoalVC {
+    
+    // Remove data in CoreData
+    func removeGoal(atIndexPath indexPath: IndexPath) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return}
+        managedContext.delete(goals[indexPath.row])
+        
+        do {
+            try managedContext.save()
+            print("Succesfully remove data")
+        } catch {
+            debugPrint("Could not remove: \(error.localizedDescription)")
+        }
+    }
+    
     // Fetch data saved in CoreData from FinishGoalVC
     func fetch(completion: (_ complete: Bool) -> ()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return}
@@ -78,6 +105,19 @@ extension GoalVC {
         }
         
     }
+    
+    func fetchCoreDataObject() {
+        self.fetch { (complete) in
+            if complete {
+                if goals.count > 0 {
+                    tableView.isHidden = false
+                } else {
+                    tableView.isHidden = true
+                }
+            }
+        }
+    }
+    
 }
 
 
